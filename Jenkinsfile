@@ -1,5 +1,11 @@
 pipeline {
-    agent { label 'slave-node1' }
+    agent { label 'slave-node1' } 
+
+    environment {
+        MAVEN_HOME = '/opt/maven'       
+        PATH = "${MAVEN_HOME}/bin:${env.PATH}"
+    }
+
     stages {
         stage('Clone Repository') {
             steps {
@@ -7,6 +13,7 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/SOWMYAganuga/maven-webapp.git'
             }
         }
+
         stage('Build Project') {
             steps {
                 echo "Building the Maven project..."
@@ -14,6 +21,7 @@ pipeline {
             }
         }
     }
+
     post {
         success {
             echo "Build completed successfully!"
