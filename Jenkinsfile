@@ -1,8 +1,5 @@
 pipeline {
     agent { label 'slave-node1' }
-    environment {
-        MAVEN_HOME = '/opt/maven'
-    }
     stages {
         stage('Clone Repository') {
             steps {
@@ -13,7 +10,7 @@ pipeline {
         stage('Build Project') {
             steps {
                 echo "Building the Maven project..."
-                sh '${MAVEN_HOME}/bin/mvn clean install'
+                sh 'mvn clean install'
             }
         }
     }
@@ -26,5 +23,3 @@ pipeline {
         }
     }
 }
-
-
