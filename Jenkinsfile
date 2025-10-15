@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'java-slave' }
+    agent { label 'slave-node1' }
     environment {
         MAVEN_HOME = '/opt/maven'
     }
